@@ -83,7 +83,7 @@
                     <navigationItem key="navigationItem" title="Title" id="IQw-wr-dHR">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="filter.png" id="J8a-cK-W3M">
                             <connections>
-                                <action selector="filterButtonTapped:" destination="EQk-92-Bfi" id="CjH-oF-1gO"/>
+                                <action selector="onRightBarButtonTapped:" destination="EQk-92-Bfi" id="roH-Ad-TJz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -91,6 +91,7 @@
                         <outlet property="datePickerView" destination="ToW-oA-PJD" id="CbY-Jp-B6b"/>
                         <outlet property="movieListTableview" destination="5Dt-we-LbB" id="75y-RB-cg0"/>
                         <outlet property="pickerViewBottomConstraint" destination="kQq-Z1-XWp" id="KxL-bv-wiF"/>
+                        <outlet property="rightBarButton" destination="J8a-cK-W3M" id="2QF-04-x7G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMM-xE-kTy" userLabel="First Responder" sceneMemberID="firstResponder"/>

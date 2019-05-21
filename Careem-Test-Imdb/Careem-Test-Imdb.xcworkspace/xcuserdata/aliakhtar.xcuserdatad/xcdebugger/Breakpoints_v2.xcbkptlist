@@ -9,77 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Modules/MovieList/Cell/MovieListTableViewCell.swift"
-            timestampString = "580125570.6284651"
+            filePath = "Careem-Test-Imdb/Modules/MovieList/ViewModel/MovieListViewModel.swift"
+            timestampString = "580153240.924822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "MovieListTableViewCell"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/MovieList/Cell/MovieListTableViewCell.swift"
-            timestampString = "580125570.628559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "populateWithViewModel(cellViewModel:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/MovieList/View/MovieListViewController.swift"
-            timestampString = "580125570.6286269"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/Services/MovieListService.swift"
-            timestampString = "580125570.628686"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "getUpcomingMovies(on:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/Services/MovieListService.swift"
-            timestampString = "580125570.629149"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "getUpcomingMovies(on:completion:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "onTapOnResetOrFilterButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,44 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Careem-Test-Imdb/Modules/MovieList/ViewModel/MovieListViewModel.swift"
-            timestampString = "580129612.69663"
+            timestampString = "580153240.9257571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "upcomingListFetch(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/MovieList/View/MovieListViewController.swift"
-            timestampString = "580129612.697037"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/MovieList/View/MovieListViewController.swift"
-            timestampString = "580129612.697331"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "filterButtonTapped(_:)"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "didSelectFiltering(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,92 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Careem-Test-Imdb/Modules/MovieList/ViewModel/MovieListViewModel.swift"
-            timestampString = "580129612.697418"
+            timestampString = "580153240.926144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "getUpcomingMovies()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/Services/MovieListService.swift"
-            timestampString = "580128444.240539"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "getUpcomingMovies(on:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Careem_Test_Imdb.MovieListServiceImpl.getUpcomingMovies(on: Swift.Int, completion: (Careem_Test_Imdb.Result&lt;Careem_Test_Imdb.UpcomingMovies, Careem_Test_Imdb.NetworkError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Careem-Test-Imdb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aliakhtar/Documents/iOS%20Projects/Careem/Careem-Test-Imdb/Careem-Test-Imdb/Modules/Services/MovieListService.swift"
-                  timestampString = "580128340.935998"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "902">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Careem_Test_Imdb.Result&lt;Foundation.Data, Careem_Test_Imdb.NetworkError&gt;) -&gt; () in Careem_Test_Imdb.MovieListServiceImpl.getUpcomingMovies(on: Swift.Int, completion: (Careem_Test_Imdb.Result&lt;Careem_Test_Imdb.UpcomingMovies, Careem_Test_Imdb.NetworkError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Careem-Test-Imdb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aliakhtar/Documents/iOS%20Projects/Careem/Careem-Test-Imdb/Careem-Test-Imdb/Modules/Services/MovieListService.swift"
-                  timestampString = "580128340.9390219"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "87">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/Services/MovieListService.swift"
-            timestampString = "580128444.2408381"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "getUpcomingMovies(on:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/Services/MovieListService.swift"
-            timestampString = "580128444.240904"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "getUpcomingMovies(on:completion:)"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "activateFilter(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Careem-Test-Imdb/Modules/MovieList/ViewModel/MovieListViewModel.swift"
-            timestampString = "580129612.697582"
+            timestampString = "580153240.926507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getUpcomingMovies()"
-            landmarkType = "7">
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "filteredMovieListViewModels"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

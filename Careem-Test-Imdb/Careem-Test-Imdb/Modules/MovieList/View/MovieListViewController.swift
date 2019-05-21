@@ -9,39 +9,38 @@
 import UIKit
 
 //MARK: - MovieListViewController
-class MovieListViewController: UIViewController {
+final class MovieListViewController: UIViewController {
     
-    @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
     //MARK: - Outlets
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var movieListTableview: UITableView!
     @IBOutlet weak var datePickerView: DatePickerView!
 
-    
+
     //MARK: - Properties
-    let viewModel = MovieListViewModelImp()
-    fileprivate let movieListCellId = "MovieListTableViewCell"
+    var viewModel: MovieListViewModel!
+ 
     
     //MARK: - View Life cycle Method
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        setupTableView()
+        setupUI()
         bindViewModelOutput()
         viewModel.viewModelDidLoad()
     }
     
-    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
-        showDatePicker()
-      
-
+    //MARK: - Outlet Actions
+    @IBAction func onRightBarButtonTapped(_ sender: UIBarButtonItem) {
+        viewModel.onTapOnResetOrFilterButton()
     }
   
     //MARK: - Methods
-    private func setupTableView() {
-        //Use extension
+    private func setupUI() {
+        
         datePickerView.delegate = self
-        let nibMovieListCell = UINib(nibName: "MovieListTableViewCell", bundle: Bundle.main)
-        self.movieListTableview.register(nibMovieListCell, forCellReuseIdentifier: self.movieListCellId)
+        self.movieListTableview.register(cellType: MovieListTableViewCell.self,bundle: Bundle.main)
     }
     
     func bindViewModelOutput() {
@@ -55,6 +54,10 @@ class MovieListViewController: UIViewController {
             // show ? ProgressHUD.show(viewController: self) : ProgressHUD.dismiss()
             case .showError(let error): break
                 //  UIAlertController.showAlert(with: error.localizedDescription)
+            case .showDatePicker(let show):
+                (show) ? self.showDatePicker()  :  self.hideDatePicker()
+            case .showFilterImage(let show):
+                self.rightBarButton.image  = ( show )  ? UIImage(named: "reset.png") : UIImage(named: "filter")
             }
         }
     }
@@ -70,12 +73,10 @@ extension MovieListViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let movieListCell = tableView.dequeueReusableCell(withIdentifier: self.movieListCellId) as? MovieListTableViewCell,
-            let cellViewModel = viewModel.getMovieListCellViewModel(index: indexPath.row) else {
-            return UITableViewCell()
-        }
-        
+        let movieListCell: MovieListTableViewCell  = tableView.dequeueReusableCell(for: indexPath)
+        let cellViewModel = viewModel.getMovieListCellViewModel(index: indexPath.row)
         movieListCell.populateWithViewModel(cellViewModel: cellViewModel)
+        
         return movieListCell
     }
     
@@ -84,22 +85,20 @@ extension MovieListViewController : UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollViewDelegate (Infinite Scrolling)
 extension MovieListViewController : UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let offsetY =  scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > (contentHeight - scrollView.frame.height) {
+
+        if scrollView.isReachToBottom() {
              viewModel.tableViewDidReachToEnd()
         }
     }
 }
 
+
 // MARK: - Date Picker & Filter
 extension MovieListViewController: DatePickerViewDelegate {
-    
     
     func showDatePicker() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
@@ -116,11 +115,15 @@ extension MovieListViewController: DatePickerViewDelegate {
     }
     
     func datePickerDidCancel(_ sender: DatePickerView) {
-        //cancelFilter()
+        viewModel.didCancelFiltering()
     }
     
     func datePicker(_ sender: DatePickerView, didSelect date: Date) {
-        hideDatePicker()
-       // filterMovies(forDate: date)
+        viewModel.didSelectFiltering(with: date)
+
     }
 }
+
+
+
+

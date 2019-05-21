@@ -18,6 +18,7 @@ struct MovieListTableCellViewModel {
     var moviePosterUrl: String?
     var movieReleaseDate: String?
     
+    
      //MARK: - Init
     init(movieTitleText: String?, movieDescription: String?,moviePosterUrl: String?,movieReleaseDate: String?) {
         self.movieTitleText = movieTitleText
@@ -25,5 +26,6 @@ struct MovieListTableCellViewModel {
         self.moviePosterUrl = Constants.IMDB_IMAGE_BASE_URL + (moviePosterUrl ?? "")
         self.movieReleaseDate = movieReleaseDate
     }
+    
     
 }

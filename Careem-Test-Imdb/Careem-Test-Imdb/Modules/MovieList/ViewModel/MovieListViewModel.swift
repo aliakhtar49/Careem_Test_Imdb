@@ -10,48 +10,92 @@ import Foundation
 
 typealias MoviesViewModelOutput = (MovieListViewModelImp.Output) -> ()
 
+//MARK: - MovieListViewModel Protocol
 protocol MovieListViewModel {
+    
     var numberOfRows: Int { get }
     var output: MoviesViewModelOutput? { get set }
-    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel?
+    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel
     func didSelectRow(index : Int)
+    func viewModelDidLoad()
+    func tableViewDidReachToEnd()
+    func didCancelFiltering()
+    func didSelectFiltering(with date: Date)
+    func onTapOnResetOrFilterButton()
 }
 
-//MARK: - MovieListViewModel
-class MovieListViewModelImp: MovieListViewModel {
+//MARK: - MovieListViewModel Implementation
+final class MovieListViewModelImp: MovieListViewModel {
     
+    //MARK: - View Output Bindings
     enum Output {
         case reloadMovies
         case showActivityIndicator(show: Bool)
+        case showDatePicker(show: Bool)
+        case showFilterImage(show: Bool)
         case showError(error: Error)
     }
     
-    //MARK: - Properties
-    var output: MoviesViewModelOutput?
+    //MARK: - Injected Properties
+    var movieService: MovieListService!
     
-    private var movieService = MovieListServiceImpl()
+    //MARK: - Stored Properties
+    var output: MoviesViewModelOutput?
     private var pageCount = 1
-    private var movieListCellViewModels = [MovieListTableCellViewModel]()
     private var totalPages: Int = 1
     private var isFetching = false
     
-    var numberOfRows: Int {
-        return movieListCellViewModels.count
+    //MARK: - Observables Properties
+    var isFilteringActive: Bool = false {
+        didSet {
+            output?(.showFilterImage(show: isFilteringActive))
+        }
+    }
+    private var allMovieListViewModels = [MovieListTableCellViewModel]() {
+        didSet {
+            output?(.reloadMovies)
+        }
+    }
+    private var filteredMovieListViewModels = [MovieListTableCellViewModel]()  {
+        didSet {
+            output?(.reloadMovies)
+        }
     }
     
+    //MARK: - Computed Properties
+    private var movieDataSourceViewModels: [MovieListTableCellViewModel] {
+        if isFilteringActive {
+            return filteredMovieListViewModels
+        }
+        return allMovieListViewModels
+    }
+    var numberOfRows: Int {
+        return movieDataSourceViewModels.count
+    }
+    
+   
+    //MARK: - View Input Muatate Methods
     func viewModelDidLoad() {
         getUpcomingMovies()
     }
-    
-    //MARK: - Methods
-    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel? {
-        return movieListCellViewModels[index]
-    }
-    
     func tableViewDidReachToEnd() {
         getUpcomingMovies()
     }
+    func didSelectFiltering(with date: Date) {
+        activateFilter(with: date)
+    }
+    func onTapOnResetOrFilterButton() {
+        (isFilteringActive) ?  clearFilter() : output?(.showDatePicker(show: true))
+    }
+    func didCancelFiltering() {
+        output?(.showDatePicker(show: false))
+    }
     
+    
+    //MARK: - View Input Action Methods
+    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel {
+        return movieDataSourceViewModels[index]
+    }
     func getUpcomingMovies() {
         if pageCount <= totalPages {
             isFetching = true
@@ -75,6 +119,20 @@ class MovieListViewModelImp: MovieListViewModel {
         }
     }
     
+    //MARK: - VPrivate Methods
+    private func activateFilter(with date: Date) {
+        isFilteringActive = true
+        output?(.showDatePicker(show: false))
+        let releaseDateFormat    = "yyyy-MM-dd"
+        filteredMovieListViewModels = allMovieListViewModels.filter({ $0.movieReleaseDate! == date.stringValue(format: releaseDateFormat) })
+        
+    }
+    private func clearFilter() {
+        isFilteringActive = false
+        filteredMovieListViewModels.removeAll()
+        
+    }
+
     func upcomingListFetch(with data: UpcomingMovies) {
         
         guard let results = data.results,
@@ -89,9 +147,8 @@ class MovieListViewModelImp: MovieListViewModel {
         let movieListTableCellViewModels =  results.map { (movie) -> MovieListTableCellViewModel in
             MovieListTableCellViewModel(movieTitleText: movie.title, movieDescription: movie.overview, moviePosterUrl: movie.poster_path, movieReleaseDate: movie.release_date)
         }
-        movieListCellViewModels.append(contentsOf: movieListTableCellViewModels)
+        allMovieListViewModels.append(contentsOf: movieListTableCellViewModels)
         
-        output?(.reloadMovies)
     }
     
     func didSelectRow(index: Int) {
@@ -99,3 +156,12 @@ class MovieListViewModelImp: MovieListViewModel {
     }
 }
 
+
+extension Date {
+    func stringValue(format: String) -> String? {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+}

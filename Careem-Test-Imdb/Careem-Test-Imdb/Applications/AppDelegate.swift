@@ -26,9 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        
-        let movieListViewController = UIStoryboard(name: "MovieList", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
-        window?.rootViewController = UINavigationController(rootViewController: movieListViewController)
+        window?.rootViewController = UINavigationController(rootViewController: MoviesListBuilderImpl().build())
     }
 
 
