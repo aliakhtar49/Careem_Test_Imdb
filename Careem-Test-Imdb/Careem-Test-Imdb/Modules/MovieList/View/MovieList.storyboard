@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie List-->
+        <scene sceneID="Pau-eV-LHs">
+            <objects>
+                <viewController storyboardIdentifier="MovieListViewController" title="Movie List" id="EQk-92-Bfi" customClass="MovieListViewController" customModule="Careem_Test_Imdb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dad-aK-n3Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Dt-we-LbB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="EQk-92-Bfi" id="RTo-Ys-nM7"/>
+                                    <outlet property="delegate" destination="EQk-92-Bfi" id="gDI-6g-wQM"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToW-oA-PJD" customClass="DatePickerView" customModule="Careem_Test_Imdb">
+                                <rect key="frame" x="0.0" y="707" width="375" height="260"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MH-d3-2vE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <items>
+                                            <barButtonItem title="Cancel" id="kno-MD-hte">
+                                                <connections>
+                                                    <action selector="onTapCancelButton:" destination="ToW-oA-PJD" id="NhJ-gd-v09"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="hIn-Oj-xHb"/>
+                                            <barButtonItem title="Done" style="done" id="PSz-gg-ffx">
+                                                <connections>
+                                                    <action selector="onTapDoneButton:" destination="ToW-oA-PJD" id="f6h-Sg-XT1"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fBp-RZ-zhg" customClass="Date">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="577270783.68845105">
+                                            <!--2019-04-18 08:59:43 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fBp-RZ-zhg" secondAttribute="trailing" id="2Qb-9R-18b"/>
+                                    <constraint firstItem="2MH-d3-2vE" firstAttribute="top" secondItem="ToW-oA-PJD" secondAttribute="top" id="6jJ-7O-25v"/>
+                                    <constraint firstItem="2MH-d3-2vE" firstAttribute="leading" secondItem="ToW-oA-PJD" secondAttribute="leading" id="8me-KJ-bti"/>
+                                    <constraint firstAttribute="bottom" secondItem="fBp-RZ-zhg" secondAttribute="bottom" id="CSN-A7-sIs"/>
+                                    <constraint firstItem="fBp-RZ-zhg" firstAttribute="leading" secondItem="ToW-oA-PJD" secondAttribute="leading" id="X6o-YD-720"/>
+                                    <constraint firstAttribute="trailing" secondItem="2MH-d3-2vE" secondAttribute="trailing" id="pdF-jY-ho0"/>
+                                    <constraint firstItem="fBp-RZ-zhg" firstAttribute="top" secondItem="2MH-d3-2vE" secondAttribute="bottom" id="sDs-AE-hFZ"/>
+                                    <constraint firstAttribute="height" constant="260" id="vv8-m6-a78"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="datePicker" destination="fBp-RZ-zhg" id="5yM-xd-Rmo"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ToW-oA-PJD" firstAttribute="leading" secondItem="dad-aK-n3Z" secondAttribute="leading" id="2R2-Pd-Mr7"/>
+                            <constraint firstItem="5Dt-we-LbB" firstAttribute="top" secondItem="6zy-C7-9mT" secondAttribute="top" id="Hpi-Hv-YYl"/>
+                            <constraint firstItem="6zy-C7-9mT" firstAttribute="trailing" secondItem="5Dt-we-LbB" secondAttribute="trailing" id="Pxs-Sc-UBt"/>
+                            <constraint firstItem="5Dt-we-LbB" firstAttribute="leading" secondItem="6zy-C7-9mT" secondAttribute="leading" id="iLO-9a-Mp7"/>
+                            <constraint firstItem="6zy-C7-9mT" firstAttribute="bottom" secondItem="ToW-oA-PJD" secondAttribute="bottom" constant="-300" id="kQq-Z1-XWp"/>
+                            <constraint firstItem="6zy-C7-9mT" firstAttribute="bottom" secondItem="5Dt-we-LbB" secondAttribute="bottom" id="pTJ-1A-Qxm"/>
+                            <constraint firstAttribute="trailing" secondItem="ToW-oA-PJD" secondAttribute="trailing" id="sBL-cP-Kk3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6zy-C7-9mT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="IQw-wr-dHR">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="filter.png" id="J8a-cK-W3M">
+                            <connections>
+                                <action selector="filterButtonTapped:" destination="EQk-92-Bfi" id="CjH-oF-1gO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePickerView" destination="ToW-oA-PJD" id="CbY-Jp-B6b"/>
+                        <outlet property="movieListTableview" destination="5Dt-we-LbB" id="75y-RB-cg0"/>
+                        <outlet property="pickerViewBottomConstraint" destination="kQq-Z1-XWp" id="KxL-bv-wiF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bMM-xE-kTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="86.806596701649184"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VOl-Ua-cw4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kIN-SB-mDU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BRC-iz-ptn">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EQk-92-Bfi" kind="relationship" relationship="rootViewController" id="VzI-H2-yeR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="veA-c5-djh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72.799999999999997" y="86.806596701649184"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="filter.png" width="50" height="50"/>
+    </resources>
+</document>

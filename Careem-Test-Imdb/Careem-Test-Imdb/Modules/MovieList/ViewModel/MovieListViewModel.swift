@@ -7,13 +7,18 @@
 //
 
 import Foundation
-import UIKit
 
+typealias MoviesViewModelOutput = (MovieListViewModelImp.Output) -> ()
 
-typealias MoviesViewModelOutput = (MovieListViewModel.Output) -> ()
+protocol MovieListViewModel {
+    var numberOfRows: Int { get }
+    var output: MoviesViewModelOutput? { get set }
+    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel?
+    func didSelectRow(index : Int)
+}
 
 //MARK: - MovieListViewModel
-class MovieListViewModel {
+class MovieListViewModelImp: MovieListViewModel {
     
     enum Output {
         case reloadMovies
@@ -23,26 +28,41 @@ class MovieListViewModel {
     
     //MARK: - Properties
     var output: MoviesViewModelOutput?
-    var movieService = MovieListServiceImpl()
-    var pageCount = 1
-    var movieListCellViewModels = [MovieListTableCellViewModel]()
-    var totalPages: Int = 1
+    
+    private var movieService = MovieListServiceImpl()
+    private var pageCount = 1
+    private var movieListCellViewModels = [MovieListTableCellViewModel]()
+    private var totalPages: Int = 1
+    private var isFetching = false
     
     var numberOfRows: Int {
         return movieListCellViewModels.count
     }
     
+    func viewModelDidLoad() {
+        getUpcomingMovies()
+    }
+    
     //MARK: - Methods
-    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel {
-        return self.movieListCellViewModels[index]
+    func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel? {
+        return movieListCellViewModels[index]
+    }
+    
+    func tableViewDidReachToEnd() {
+        getUpcomingMovies()
     }
     
     func getUpcomingMovies() {
         if pageCount <= totalPages {
+            isFetching = true
+            
+            pageCount += 1 
+   
             movieService.getUpcomingMovies(on: pageCount) { [weak self] (result) in
                 
                 guard let self = self else { return }
                 
+                self.isFetching = false
                 switch result {
                 case .success(let upcomingMovies):
                     self.upcomingListFetch(with: upcomingMovies)
@@ -54,6 +74,7 @@ class MovieListViewModel {
             }
         }
     }
+    
     func upcomingListFetch(with data: UpcomingMovies) {
         
         guard let results = data.results,
@@ -61,7 +82,7 @@ class MovieListViewModel {
             let totalPages = data.total_pages else {
             return
         }
-        
+  
         self.pageCount = pageCount
         self.totalPages = totalPages
         
@@ -70,6 +91,11 @@ class MovieListViewModel {
         }
         movieListCellViewModels.append(contentsOf: movieListTableCellViewModels)
         
-        self.output?(.reloadMovies)
+        output?(.reloadMovies)
+    }
+    
+    func didSelectRow(index: Int) {
+    
     }
 }
+
