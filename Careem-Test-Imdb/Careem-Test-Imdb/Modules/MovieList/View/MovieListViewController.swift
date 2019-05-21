@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 //MARK: - MovieListViewController
 final class MovieListViewController: UIViewController {
@@ -50,10 +51,10 @@ final class MovieListViewController: UIViewController {
             switch output {
             case .reloadMovies:
                 self.movieListTableview.reloadData()
-            case .showActivityIndicator(let show): break
-            // show ? ProgressHUD.show(viewController: self) : ProgressHUD.dismiss()
-            case .showError(let error): break
-                //  UIAlertController.showAlert(with: error.localizedDescription)
+            case .showLoader(let show):
+            show ? SVProgressHUD.show() : SVProgressHUD.dismiss()
+            case .showError(let error):
+                UIAlertController.popAlert(withMessage: error.localizedDescription)
             case .showDatePicker(let show):
                 (show) ? self.showDatePicker()  :  self.hideDatePicker()
             case .showFilterImage(let show):

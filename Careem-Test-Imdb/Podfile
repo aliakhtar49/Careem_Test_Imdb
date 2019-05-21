@@ -7,6 +7,7 @@ target 'Careem-Test-Imdb' do
 
   # Pods for Careem-Test-Imdb
   pod 'Kingfisher', '~> 5.0'
+  pod 'SVProgressHUD'
   target 'Careem-Test-ImdbTests' do
     inherit! :search_paths
     # Pods for testing

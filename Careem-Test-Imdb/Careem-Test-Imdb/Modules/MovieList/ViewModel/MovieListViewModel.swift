@@ -30,7 +30,7 @@ final class MovieListViewModelImp: MovieListViewModel {
     //MARK: - View Output Bindings
     enum Output {
         case reloadMovies
-        case showActivityIndicator(show: Bool)
+        case showLoader(show: Bool)
         case showDatePicker(show: Bool)
         case showFilterImage(show: Bool)
         case showError(error: Error)
@@ -94,6 +94,8 @@ final class MovieListViewModelImp: MovieListViewModel {
         return movieDataSourceViewModels[index]
     }
     func getUpcomingMovies() {
+        
+        output?(.showLoader(show: true))
         movieListDataProvider.providePaginatedUpcomingMovies()
     }
     
@@ -124,10 +126,13 @@ extension MovieListViewModelImp: MovieListDataProviderDelegate {
 
         guard let results = upcomingMovies.results else { return }
         allMovieListViewModels.append(contentsOf: results.map { MovieListTableCellViewModel.init($0) })
+        output?(.showLoader(show: false))
     }
     
     func onFailure(_ error: NetworkError) {
          self.output?(.showError(error: error))
+         output?(.showLoader(show: false))
+        
     }
     
 }
