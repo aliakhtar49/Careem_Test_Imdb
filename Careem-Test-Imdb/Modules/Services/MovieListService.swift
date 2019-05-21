@@ -9,13 +9,17 @@
 import Foundation
 
 
-typealias UpcomingMovieResponse = (UpcomingMovies?, Error?) -> Void
+//typealias UpcomingMovieResponse = (UpcomingMovies?, Error?) -> Void
+
+typealias UpcomingMovieResponse = (Result<UpcomingMovies,NetworkError>) -> Void
+
+
 
 
 
 //MARK: - Movie List Service  Protocol
 protocol MovieListService {
-    
+
     func getUpcomingMovies(on page: Int, completion: @escaping (UpcomingMovieResponse) )
 }
 
@@ -23,6 +27,9 @@ protocol MovieListService {
 
 //MARK: - Movie List Service  Protocol Implementation
 class MovieListServiceImpl: MovieListService {
+    
+     static let MOVIE_LIST_API_ROUTE = "3/movie/upcoming"
+    
     
     //MARK: - Properties
     let translationLayer: TranslationLayer
@@ -37,16 +44,25 @@ class MovieListServiceImpl: MovieListService {
     //MARK: - Method
     func getUpcomingMovies(on page: Int, completion: @escaping (UpcomingMovieResponse) ) {
         
-        let endPoint = Endpoint(method: .get, endpoint: "3/movie/upcoming",parameters:["api_key":"d12b2746c7eaafbfdcf204463e26ff70","language":"en-US","page":"\(page)"])
+        let endPoint = Endpoint(method: .get, route: MovieListServiceImpl.MOVIE_LIST_API_ROUTE,parameters:["api_key":Constants.IMDB_API_KEY,"language":"en-US","page":"\(page)"])
         
         networkManager.request(endPoint) { (result) in
+           
             switch result {
             case .success(let data):
-                completion((self.translationLayer.translateToObject(withData: data)),nil)
+                do {
+                    let upcomingMovies: UpcomingMovies = try self.translationLayer.translateToObject(withData: data)
+                    completion(.success(upcomingMovies))
+                    
+                }catch {
+                    completion(.failure(NetworkError.decoding(data, error)))
+                    
+                }
                 
             case .failure(let error):
-                completion(nil,error)
+                completion(.failure(error))
             }
         }
     }
+    
 }

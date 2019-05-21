@@ -10,9 +10,7 @@ import Foundation
 
  //MARK: - Result
 
-public enum Result {
-    
-    case success(Data)
-    case failure(Error)
-    
+public enum Result<V, E: Error> {
+    case success(V)
+    case failure(E)
 }

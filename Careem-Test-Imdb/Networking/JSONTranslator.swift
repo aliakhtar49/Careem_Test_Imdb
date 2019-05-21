@@ -13,7 +13,9 @@ protocol TranslationLayer {
     
     func translateToMap<T: Encodable>(withModel model: T) -> [String: Any]?
     func translateToData<T: Encodable>(withModel model: T) -> Data?
-    func translateToObject<T: Decodable>(withData data: Data) -> T?
+    func translateToObject<T: Decodable>(withData data: Data) throws -> T
+    //func translateToObject<T: Decodable>(withData data: Data) -> T?
+    
 }
 
 
@@ -48,18 +50,22 @@ class JSONTranslation: TranslationLayer {
         }
     }
     
-    func translateToObject<T: Decodable>(withData data: Data) -> T? {
-        
-        do {
-            
+//    func translateToObject<T: Decodable>(withData data: Data) -> T? {
+//
+//        do {
+//
+//            let decoder = JSONDecoder()
+//            return try decoder.decode(T.self, from: data)
+//
+//        } catch let error {
+//
+//            print(error)
+//            return nil
+//        }
+//
+//    }
+    func translateToObject<T: Decodable>(withData data: Data) throws -> T {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: data)
-            
-        } catch let error {
-            
-            print(error)
-            return nil
-        }
-        
     }
 }

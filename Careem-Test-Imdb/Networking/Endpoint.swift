@@ -1,5 +1,5 @@
 //
-//  EndPoint.swift
+//  Endpoint.swift
 //  Careem-Test-Imdb
 //
 //  Created by Ali Akhtar on 20/05/2019.
@@ -21,6 +21,7 @@ public enum HTTPMethod: String {
 //MARK: - Base Path (Environment)
 public enum BasePath: String {
     case development = "https://api.themoviedb.org/"
+    case test = "http://someurl.com"
 }
 
 //MARK: - EndPoint
@@ -28,7 +29,7 @@ public struct Endpoint {
     
     //MARK: - Properties
     private let method: HTTPMethod
-    private let endpoint: String
+    private let route: String
     private let parameters: [String: String]?
     private let basePath: BasePath
     let headers: [String: String]?
@@ -36,24 +37,22 @@ public struct Endpoint {
     
     private var url: URL? {
         
-        guard var components = URLComponents(string: basePath.rawValue + endpoint) else { return nil }
-        guard let parameters = parameters else { return components.url! }
-    
-        components.queryItems = parameters.map { URLQueryItem(name: $0, value: $1) }
+        guard var components = URLComponents(string: basePath.rawValue + route) else { return nil }
+        components.queryItems = parameters?.map { URLQueryItem(name: $0, value: $1) }
         return components.url!
     }
     
     //MARK: - Init
     public init(
         method: HTTPMethod,
-        endpoint: String,
+        route: String = "",
         parameters: [String: String]? = nil,
         basePath: BasePath = BasePath.development,
         headers: [String: String]? = nil
         ) {
         
         self.method = method
-        self.endpoint = endpoint
+        self.route = route
         self.parameters = parameters
         self.headers = headers
         self.basePath = basePath
@@ -69,16 +68,11 @@ public struct Endpoint {
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        
-        headers?.forEach({ (key, value) in
-            request.setValue(value, forHTTPHeaderField: key)
-        })
+        request.setHeaders(headers)
         
         return request
     }
     
 }
 
-extension URLRequest {
-    
-}
+

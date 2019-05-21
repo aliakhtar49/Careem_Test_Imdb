@@ -13,7 +13,7 @@ import Foundation
 //MARK: - Netwworking Protocol
 protocol Networking {
     
-    func request(_ request: Endpoint,completion: @escaping ((Result) -> Void))
+    func request(_ request: Endpoint,completion: @escaping ((Result<Data,NetworkError>) -> Void))
 }
 
 //MARK: - Netwworking Protocol Implementation
@@ -29,7 +29,7 @@ public class NetworkManager : Networking {
     
     
     //MARK: - Methods
-    func request(_ endPoint: Endpoint,completion: @escaping ((Result) -> Void)) {
+    func request(_ endPoint: Endpoint,completion: @escaping ((Result<Data,NetworkError>) -> Void)) {
         
         guard let request =  endPoint.urlRequest() else {
             completion(.failure(NetworkError.requestCreation))
@@ -39,7 +39,8 @@ public class NetworkManager : Networking {
         //Url Session Task creation
         session.dataTask(with: request) { (data, response, error) in
             
-              let result: Result
+                let result: Result<Data,NetworkError>
+            
                 if let error = error {
                     result = .failure(NetworkError.server(error))
                 }

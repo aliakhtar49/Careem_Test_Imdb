@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Careem-Test-ImdbTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3AA3F6652292E01D006A19F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AA3F6792292E01F006A19F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AA3F6842292E01F006A19F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

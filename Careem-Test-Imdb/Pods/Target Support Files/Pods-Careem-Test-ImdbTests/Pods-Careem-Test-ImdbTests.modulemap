@@ -1,0 +1,6 @@
+framework module Pods_Careem_Test_ImdbTests {
+  umbrella header "Pods-Careem-Test-ImdbTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

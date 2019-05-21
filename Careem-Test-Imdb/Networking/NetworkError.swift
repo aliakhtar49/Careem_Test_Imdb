@@ -17,9 +17,14 @@ enum NetworkError: Error {
     case decoding(Data, Error)
     case server(Error)
     case unknown
+
+
+}
+
+//MARK: - Custom Messages
+extension NetworkError: LocalizedError {
     
-    //MARK: - Custom Messages
-    var message: String {
+    public var errorDescription: String? {
         switch self {
         case .requestCreation:
             return "Request could not be created."
@@ -32,7 +37,6 @@ enum NetworkError: Error {
         }
         
     }
-
 }
 
 
