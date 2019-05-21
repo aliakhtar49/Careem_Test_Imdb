@@ -13,19 +13,21 @@ import Foundation
 struct MovieListTableCellViewModel {
     
      //MARK: - Properties
-    var movieTitleText: String?
-    var movieDescription: String?
-    var moviePosterUrl: String?
-    var movieReleaseDate: String?
+    var movieTitleText: String
+    var movieDescription: String
+    var moviePosterUrl: String
+    var movieReleaseDate: String
+    
+    var movie: Movie?
     
     
-     //MARK: - Init
-    init(movieTitleText: String?, movieDescription: String?,moviePosterUrl: String?,movieReleaseDate: String?) {
-        self.movieTitleText = movieTitleText
-        self.movieDescription = movieDescription
-        self.moviePosterUrl = Constants.IMDB_IMAGE_BASE_URL + (moviePosterUrl ?? "")
-        self.movieReleaseDate = movieReleaseDate
+    //MARK: - Init
+    init(_ movie: Movie) {
+       
+                self.movieTitleText = movie.title ?? ""
+                self.movieDescription = movie.overview ?? ""
+                self.moviePosterUrl = Constants.IMDB_IMAGE_BASE_URL + (movie.poster_path ?? "")
+                self.movieReleaseDate = movie.release_date ?? ""
     }
-    
     
 }

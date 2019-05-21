@@ -37,13 +37,10 @@ final class MovieListViewModelImp: MovieListViewModel {
     }
     
     //MARK: - Injected Properties
-    var movieService: MovieListService!
+    var movieListDataProvider: MovieListDataProvider!
     
     //MARK: - Stored Properties
     var output: MoviesViewModelOutput?
-    private var pageCount = 1
-    private var totalPages: Int = 1
-    private var isFetching = false
     
     //MARK: - Observables Properties
     var isFilteringActive: Bool = false {
@@ -97,59 +94,22 @@ final class MovieListViewModelImp: MovieListViewModel {
         return movieDataSourceViewModels[index]
     }
     func getUpcomingMovies() {
-        if pageCount <= totalPages {
-            isFetching = true
-            
-            pageCount += 1 
-   
-            movieService.getUpcomingMovies(on: pageCount) { [weak self] (result) in
-                
-                guard let self = self else { return }
-                
-                self.isFetching = false
-                switch result {
-                case .success(let upcomingMovies):
-                    self.upcomingListFetch(with: upcomingMovies)
-                    
-                case .failure(let error):
-                    self.output?(.showError(error: error))
-                }
-                
-            }
-        }
+        movieListDataProvider.providePaginatedUpcomingMovies()
     }
     
-    //MARK: - VPrivate Methods
+    //MARK: - Private Methods
     private func activateFilter(with date: Date) {
         isFilteringActive = true
         output?(.showDatePicker(show: false))
-        let releaseDateFormat    = "yyyy-MM-dd"
-        filteredMovieListViewModels = allMovieListViewModels.filter({ $0.movieReleaseDate! == date.stringValue(format: releaseDateFormat) })
+        filteredMovieListViewModels = allMovieListViewModels.filter({ $0.movieReleaseDate == date.stringValue(formatter: DateFormatterManger.dateFormatterForReleaseDate) })
         
     }
     private func clearFilter() {
         isFilteringActive = false
         filteredMovieListViewModels.removeAll()
-        
     }
 
-    func upcomingListFetch(with data: UpcomingMovies) {
-        
-        guard let results = data.results,
-            let pageCount = data.page,
-            let totalPages = data.total_pages else {
-            return
-        }
-  
-        self.pageCount = pageCount
-        self.totalPages = totalPages
-        
-        let movieListTableCellViewModels =  results.map { (movie) -> MovieListTableCellViewModel in
-            MovieListTableCellViewModel(movieTitleText: movie.title, movieDescription: movie.overview, moviePosterUrl: movie.poster_path, movieReleaseDate: movie.release_date)
-        }
-        allMovieListViewModels.append(contentsOf: movieListTableCellViewModels)
-        
-    }
+
     
     func didSelectRow(index: Int) {
     
@@ -157,11 +117,18 @@ final class MovieListViewModelImp: MovieListViewModel {
 }
 
 
-extension Date {
-    func stringValue(format: String) -> String? {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        formatter.dateFormat = format
-        return formatter.string(from: self)
+//MARK: - MovieListDataProviderDelegate Delegate
+extension MovieListViewModelImp: MovieListDataProviderDelegate {
+    
+    func onSuccess(_ upcomingMovies: UpcomingMovies) {
+
+        guard let results = upcomingMovies.results else { return }
+        allMovieListViewModels.append(contentsOf: results.map { MovieListTableCellViewModel.init($0) })
     }
+    
+    func onFailure(_ error: NetworkError) {
+         self.output?(.showError(error: error))
+    }
+    
 }
+
