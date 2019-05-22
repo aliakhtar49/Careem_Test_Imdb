@@ -23,11 +23,12 @@ struct MovieListTableCellViewModel {
     
     //MARK: - Init
     init(_ movie: Movie?) {
-       
-                self.movieTitleText = movie?.title ?? ""
-                self.movieDescription = movie?.overview ?? ""
-                self.moviePosterUrl = Constants.IMDB_IMAGE_BASE_URL + (movie?.poster_path ?? "")
-                self.movieReleaseDate = movie?.release_date ?? ""
+        
+        self.movie = movie
+        self.movieTitleText = movie?.title ?? ""
+        self.movieDescription = movie?.overview ?? ""
+        self.moviePosterUrl = Constants.IMDB_IMAGE_BASE_URL + (movie?.poster_path ?? "")
+        self.movieReleaseDate = (DateUtility.convertShortToLong(from: movie?.release_date)) ?? ""
     }
     
 }

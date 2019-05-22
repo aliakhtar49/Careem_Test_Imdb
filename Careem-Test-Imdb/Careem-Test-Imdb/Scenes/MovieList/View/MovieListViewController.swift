@@ -19,7 +19,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var datePickerView: DatePickerView!
 
 
-    //MARK: - Properties
+    //MARK: - Injected Properties
     var viewModel: MovieListViewModel!
  
     
@@ -48,6 +48,7 @@ class MovieListViewController: UIViewController {
         viewModel.output = { [weak self] output in
             
             guard let self = self else { return }
+            
             switch output {
             case .reloadMovies:
                 self.movieListTableview.reloadData()
@@ -65,7 +66,7 @@ class MovieListViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
-extension MovieListViewController : UITableViewDataSource {
+extension MovieListViewController : UITableViewDataSource , UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

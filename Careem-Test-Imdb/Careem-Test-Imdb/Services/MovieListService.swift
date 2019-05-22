@@ -14,9 +14,6 @@ import Foundation
 typealias UpcomingMovieResponse = (Result<UpcomingMovies,NetworkError>) -> Void
 
 
-
-
-
 //MARK: - Movie List Service  Protocol
 protocol MovieListService {
 

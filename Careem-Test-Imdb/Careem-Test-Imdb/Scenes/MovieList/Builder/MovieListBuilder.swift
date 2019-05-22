@@ -14,23 +14,26 @@ protocol MoviesListBuilder {
     
     func build() -> UIViewController
 }
+
 class MoviesListBuilderImpl: MoviesListBuilder {
     
     func build() -> UIViewController {
-        
-        
+    
         let storyboard = UIStoryboard(name: "MovieList", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
         
+        let coordinator = MoviesListCoordinatorImpl(view: viewController)
         
         let dataProvider = MovieListDataProviderImpl()
         dataProvider.movieService = MovieListServiceImpl()
-        let viewModel = MovieListViewModelImp(dataProvider)
+        let viewModel = MovieListViewModelImp(dataProvider,coordinator)
         
         dataProvider.delegate = viewModel
-        
         viewModel.movieListDataProvider = dataProvider
         viewController.viewModel = viewModel
         return viewController
     }
 }
+
+
+

@@ -20,13 +20,125 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Careem-Test-ImdbTests/ServiceTests/MovieListServiceTests.swift"
-            timestampString = "580191618.095401"
+            timestampString = "580208654.6918941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
             landmarkName = "testUpcomingMovieMethodWithNoInternetConnection()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Careem-Test-Imdb/Scenes/MovieList/ViewModel/MovieListViewModel.swift"
+            timestampString = "580208654.692296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "didSelectRow(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Careem-Test-Imdb/Scenes/MovieList/View/MovieListViewController.swift"
+            timestampString = "580208654.692587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Careem-Test-Imdb/Scenes/MovieList/Coordinator/MoviesListCoordinator.swift"
+            timestampString = "580208654.692843"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "navigateToMovieDetail(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Careem-Test-Imdb/Scenes/MovieDetails/ViewModel/MovieListDetailViewModel.swift"
+            timestampString = "580208566.582837"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Careem-Test-Imdb/Scenes/MovieDetails/ViewModel/MovieListDetailViewModel.swift"
+            timestampString = "580208566.583246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "init(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Careem_Test_Imdb.MovieDetailViewModelImp.__allocating_init(Swift.Optional&lt;Careem_Test_Imdb.Movie&gt;) -&gt; Careem_Test_Imdb.MovieDetailViewModelImp"
+                  moduleName = "Careem-Test-Imdb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliakhtar/Documents/iOS%20Projects/Careem/Careem-Test-Imdb/Careem-Test-Imdb/Scenes/MovieDetails/ViewModel/MovieListDetailViewModel.swift"
+                  timestampString = "580202190.097991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Careem_Test_Imdb.MovieDetailViewModelImp.init(Swift.Optional&lt;Careem_Test_Imdb.Movie&gt;) -&gt; Careem_Test_Imdb.MovieDetailViewModelImp"
+                  moduleName = "Careem-Test-Imdb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliakhtar/Documents/iOS%20Projects/Careem/Careem-Test-Imdb/Careem-Test-Imdb/Scenes/MovieDetails/ViewModel/MovieListDetailViewModel.swift"
+                  timestampString = "580202190.1013"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

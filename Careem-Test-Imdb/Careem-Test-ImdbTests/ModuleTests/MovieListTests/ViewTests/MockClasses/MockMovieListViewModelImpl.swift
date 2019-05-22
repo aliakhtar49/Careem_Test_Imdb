@@ -13,6 +13,9 @@ import UIKit
 
 class MockMovieListViewModelImpl: MovieListViewModel {
     
+    var movieListDataProvider: MovieListDataProvider!
+    var movieListCoordinator: MoviesListCoordinator!
+    
     var isTapOnResetOrFilterButton = false
     var isNumberOfRowsCalls = false
     var isGetMovieListCellViewModelCalls = false

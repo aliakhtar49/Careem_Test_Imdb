@@ -18,7 +18,8 @@ class MovieListViewModelTests: XCTestCase {
     override func setUp() {
         
         mockListDataProvider = MockMovieListDataProvider()
-        viewModel = MovieListViewModelImp(mockListDataProvider)
+        
+        viewModel = MovieListViewModelImp(mockListDataProvider,MoviesListCoordinatorImpl(view: UIViewController()))
         mockListDataProvider.delegate = viewModel
         view.viewModel = viewModel
         view.bindViewModelOutput()

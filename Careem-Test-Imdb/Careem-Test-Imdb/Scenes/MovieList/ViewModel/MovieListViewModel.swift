@@ -14,6 +14,8 @@ typealias MoviesViewModelOutput = (MovieListViewModelImp.Output) -> ()
 protocol MovieListViewModel {
     
     var numberOfRows: Int { get }
+    var movieListDataProvider: MovieListDataProvider! { get }
+    var movieListCoordinator: MoviesListCoordinator! { get }
     var output: MoviesViewModelOutput? { get set }
     func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel
     func didSelectRow(index : Int)
@@ -27,6 +29,7 @@ protocol MovieListViewModel {
 //MARK: - MovieListViewModel Implementation
 final class MovieListViewModelImp: MovieListViewModel {
     
+    
     //MARK: - View Output Bindings
     enum Output {
         case reloadMovies
@@ -38,10 +41,12 @@ final class MovieListViewModelImp: MovieListViewModel {
     
     //MARK: - Injected Properties
     var movieListDataProvider: MovieListDataProvider!
+    var movieListCoordinator: MoviesListCoordinator!
     
     //MARK: - Injected Properties Initlizaer
-    init(_ movieListDataProvider: MovieListDataProvider) {
+    init(_ movieListDataProvider: MovieListDataProvider,_ movieListCoordinator: MoviesListCoordinator) {
         self.movieListDataProvider = movieListDataProvider
+        self.movieListCoordinator = movieListCoordinator
     }
     
     //MARK: - Stored Properties
@@ -100,15 +105,14 @@ final class MovieListViewModelImp: MovieListViewModel {
     }
     func getUpcomingMovies() {
         
-        
-        movieListDataProvider.providePaginatedUpcomingMovies()
+        if isFilteringActive == false  { movieListDataProvider.providePaginatedUpcomingMovies() }
     }
     
     //MARK: - Private Methods
     private func activateFilter(with date: Date) {
         isFilteringActive = true
         output?(.showDatePicker(show: false))
-        filteredMovieListViewModels = allMovieListViewModels.filter({ $0.movieReleaseDate == date.stringValue(formatter: DateFormatterManger.dateFormatterForReleaseDate) })
+        filteredMovieListViewModels = allMovieListViewModels.filter({ ($0.movie?.release_date ?? "") == date.stringValue(formatter: DateFormatter.shortFormatDateFormatter) })
         
     }
     private func clearFilter() {
@@ -119,7 +123,7 @@ final class MovieListViewModelImp: MovieListViewModel {
 
     
     func didSelectRow(index: Int) {
-    
+        movieListCoordinator.navigateToMovieDetail(movie: getMovieListCellViewModel(index: index).movie)
     }
 }
 

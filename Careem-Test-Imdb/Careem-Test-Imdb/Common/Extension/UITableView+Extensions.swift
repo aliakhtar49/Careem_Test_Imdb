@@ -1,5 +1,5 @@
 //
-//  UITableViewExtensions.swift
+//  UITableView+Extensions.swift
 //  Careem-Test-Imdb
 //
 //  Created by Ali Akhtar on 21/05/2019.
