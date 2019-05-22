@@ -1,6 +1,6 @@
 
 # Careem-Test-Imdb
-- A Careem-Test App. Displays movies data fetched from themoviedb.org API.
+- A Careem-Test App to displays movies data fetched from themoviedb.org API.
 
 
 ### Installing
@@ -9,7 +9,7 @@
 $ pod install
 ```
 
-## Develope On
+## Development
 - Swift 4.2
 - XCode 10.1
 
@@ -22,13 +22,14 @@ $ pod install
 ## Technical Notes
 
 ### Architecture
-- Architecture Used MVVM-C along with Builder
-- Builder surves the modules construction prupose.
-- Coordinator is used for navigation.
-- Closure Bindind is used to Update View 
+- MVVM-C 
+- Builder (Module Creation)
+- Closure  (View Model to View Bindings)
 
 ### Code Structure
+
 Code has been strucutred into seven main categories, App, Scenes,Common,Resources,Services and Networking Files:
+
 - App Group contain (AppDelegate)
 - Scenes Group contain (MVVM files for Features)
 - Resources Group contains (Assets, Info.plist, Assets, Launch Screen)
