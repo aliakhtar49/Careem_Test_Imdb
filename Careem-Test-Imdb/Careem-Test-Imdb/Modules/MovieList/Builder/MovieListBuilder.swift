@@ -22,9 +22,10 @@ class MoviesListBuilderImpl: MoviesListBuilder {
         let storyboard = UIStoryboard(name: "MovieList", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
         
-        let viewModel = MovieListViewModelImp()
+        
         let dataProvider = MovieListDataProviderImpl()
         dataProvider.movieService = MovieListServiceImpl()
+        let viewModel = MovieListViewModelImp(dataProvider)
         
         dataProvider.delegate = viewModel
         

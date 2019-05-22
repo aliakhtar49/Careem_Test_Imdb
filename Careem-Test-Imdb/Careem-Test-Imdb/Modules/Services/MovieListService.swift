@@ -45,7 +45,6 @@ class MovieListServiceImpl: MovieListService {
     func getUpcomingMovies(on page: Int, completion: @escaping (UpcomingMovieResponse) ) {
         
         let endPoint = Endpoint(method: .get, route: MovieListServiceImpl.MOVIE_LIST_API_ROUTE,parameters:["api_key":Constants.IMDB_API_KEY,"language":"en-US","page":"\(page)"])
-        print("EndPoint Hittings\(endPoint.urlRequest()?.url)")
         
         networkManager.request(endPoint) { (result) in
            

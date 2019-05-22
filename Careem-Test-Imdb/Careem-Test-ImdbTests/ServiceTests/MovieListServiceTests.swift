@@ -35,9 +35,12 @@ class MovieListServiceTests: XCTestCase {
             return (nil, upcomingMovieSuccessStub ,nil)
         }
         
-        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 2) { (upcomingMovie, error) in
-            XCTAssertTrue(upcomingMovie!.page == 1)
-            XCTAssertTrue(upcomingMovie!.total_pages == 17)
+        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 2) { (result) in
+            if case let .success(upcomingMovie) = result {
+                XCTAssertTrue(upcomingMovie.page == 1)
+                XCTAssertTrue(upcomingMovie.total_pages == 17)
+            }
+
         }
     }
     

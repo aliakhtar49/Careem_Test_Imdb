@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 //MARK: - MovieListViewController
-final class MovieListViewController: UIViewController {
+class MovieListViewController: UIViewController {
     
     //MARK: - Outlets
     @IBOutlet weak var rightBarButton: UIBarButtonItem!

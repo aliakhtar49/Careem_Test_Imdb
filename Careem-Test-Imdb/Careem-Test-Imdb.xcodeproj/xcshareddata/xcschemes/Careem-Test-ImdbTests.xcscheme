@@ -11,14 +11,13 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AA3F6652292E01D006A19F0"
-            BuildableName = "Careem-Test-Imdb.app"
-            BlueprintName = "Careem-Test-Imdb"
+            BlueprintIdentifier = "3AA3F6792292E01F006A19F0"
+            BuildableName = "Careem-Test-ImdbTests.xctest"
+            BlueprintName = "Careem-Test-ImdbTests"
             ReferencedContainer = "container:Careem-Test-Imdb.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

@@ -20,6 +20,7 @@ protocol MovieListDataProviderDelegate: class {
 protocol MovieListDataProvider {
 
     func providePaginatedUpcomingMovies()
+    var delegate: MovieListDataProviderDelegate? { get set }
 }
 
 //MARK: - MovieListDataProvider Protocol Implementation

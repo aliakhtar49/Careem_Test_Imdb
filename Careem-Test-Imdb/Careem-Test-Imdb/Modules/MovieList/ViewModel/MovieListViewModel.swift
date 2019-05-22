@@ -39,6 +39,11 @@ final class MovieListViewModelImp: MovieListViewModel {
     //MARK: - Injected Properties
     var movieListDataProvider: MovieListDataProvider!
     
+    //MARK: - Injected Properties Initlizaer
+    init(_ movieListDataProvider: MovieListDataProvider) {
+        self.movieListDataProvider = movieListDataProvider
+    }
+    
     //MARK: - Stored Properties
     var output: MoviesViewModelOutput?
     
@@ -130,7 +135,7 @@ extension MovieListViewModelImp: MovieListDataProviderDelegate {
     }
     
     func onFailure(_ error: NetworkError) {
-         self.output?(.showError(error: error))
+         output?(.showError(error: error))
          output?(.showLoader(show: false))
         
     }

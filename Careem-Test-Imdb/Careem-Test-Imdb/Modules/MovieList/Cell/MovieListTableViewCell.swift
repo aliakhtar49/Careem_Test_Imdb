@@ -22,10 +22,10 @@ class MovieListTableViewCell: UITableViewCell {
     //MARK: - Methods
     func populateWithViewModel(cellViewModel: MovieListTableCellViewModel) {
         
-        movieTitle.text = cellViewModel.movieTitleText ?? ""
-        movieReleaseDate.text = cellViewModel.movieReleaseDate ?? ""
-        movieDescription.text = cellViewModel.movieDescription ?? ""
-        let url = URL(string: cellViewModel.moviePosterUrl ?? "")
+        movieTitle.text = cellViewModel.movieTitleText
+        movieReleaseDate.text = cellViewModel.movieReleaseDate 
+        movieDescription.text = cellViewModel.movieDescription 
+        let url = URL(string: cellViewModel.moviePosterUrl )
         posterImageView.kf.setImage(with: url)
             
         }
