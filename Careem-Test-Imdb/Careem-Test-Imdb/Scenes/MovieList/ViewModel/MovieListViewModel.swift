@@ -19,7 +19,7 @@ protocol MovieListViewModel {
     var output: MoviesViewModelOutput? { get set }
     func getMovieListCellViewModel(index : Int) -> MovieListTableCellViewModel
     func didSelectRow(index : Int)
-    func viewModelDidLoad()
+    func viewDidLoad()
     func tableViewDidReachToEnd()
     func didCancelFiltering()
     func didSelectFiltering(with date: Date)
@@ -82,7 +82,7 @@ final class MovieListViewModelImp: MovieListViewModel {
     
    
     //MARK: - View Input Muatate Methods
-    func viewModelDidLoad() {
+    func viewDidLoad() {
         getUpcomingMovies()
     }
     func tableViewDidReachToEnd() {

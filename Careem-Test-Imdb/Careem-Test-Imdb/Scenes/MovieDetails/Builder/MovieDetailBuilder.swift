@@ -14,11 +14,11 @@ import UIKit
 
 protocol MovieDetailBuilder {
     
-    func build(withMovie movie: Movie?) -> UIViewController
+    func build(withMovie movie: Movie?) -> MovieDetailViewController
 }
 class MovieDetailBuilderImpl: MovieDetailBuilder {
     
-    func build(withMovie movie: Movie?) -> UIViewController {
+    func build(withMovie movie: Movie?) -> MovieDetailViewController {
         
         let storyboard = UIStoryboard(name: "MovieDetail", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController

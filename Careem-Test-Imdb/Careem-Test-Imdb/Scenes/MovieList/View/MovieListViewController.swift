@@ -29,7 +29,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModelOutput()
-        viewModel.viewModelDidLoad()
+        viewModel.viewDidLoad()
     }
     
     //MARK: - Outlet Actions

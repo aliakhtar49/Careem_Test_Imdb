@@ -39,7 +39,7 @@ class MockMovieListViewModelImpl: MovieListViewModel {
         isDidSelectRowCalls = true
     }
     
-    func viewModelDidLoad() {
+    func viewDidLoad() {
         
     }
     

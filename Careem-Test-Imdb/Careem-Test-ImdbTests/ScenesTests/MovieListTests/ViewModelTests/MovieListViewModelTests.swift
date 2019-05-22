@@ -102,7 +102,7 @@ class MovieListViewModelTests: XCTestCase {
         }
 
         //When
-        viewModel.viewModelDidLoad()
+        viewModel.viewDidLoad()
 
         //Then
         let cellViewModel = viewModel.getMovieListCellViewModel(index: 0)

@@ -12,12 +12,12 @@ import UIKit
 
 protocol MoviesListBuilder {
     
-    func build() -> UIViewController
+    func build() -> MovieListViewController
 }
 
 class MoviesListBuilderImpl: MoviesListBuilder {
     
-    func build() -> UIViewController {
+    func build() -> MovieListViewController {
     
         let storyboard = UIStoryboard(name: "MovieList", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
