@@ -14,7 +14,7 @@ enum NetworkError: Error {
   
     //MARK: - Cases
     case requestCreation
-    case decoding(Data, Error)
+    case decoding(Error)
     case server(Error)
     case unknown
 
@@ -28,7 +28,7 @@ extension NetworkError: LocalizedError {
         switch self {
         case .requestCreation:
             return "Request could not be created."
-        case .decoding(_, let error):
+        case .decoding(let error):
             return "Decoding failed: \(error.localizedDescription)"
         case .server(let error):
             return error.localizedDescription

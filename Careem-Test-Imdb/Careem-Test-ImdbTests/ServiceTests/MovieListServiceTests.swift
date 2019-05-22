@@ -44,41 +44,47 @@ class MovieListServiceTests: XCTestCase {
         }
     }
     
-//    func testUpcomingMovieModelDecodingFailed() {
+    func testUpcomingMovieModelDecodingFailed() {
+
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
+        let mockSession = URLSession(configuration: sessionConfiguration)
+
+        let mockNetworkManager = NetworkManager(session: mockSession)
+
+        MockURLProtocol.requestHandler =  { request in
+            return (nil, upcomingMovieDecodingFailedStub ,nil)
+        }
+
+        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 1) { (result) in
+            if case let .failure(error) = result {
+               XCTAssertTrue(error.localizedDescription == "Decoding failed: The data couldn’t be read because it isn’t in the correct format.")
+            }
+
+            
+        }
+    }
 //
-//        let sessionConfiguration = URLSessionConfiguration.ephemeral
-//        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
-//        let mockSession = URLSession(configuration: sessionConfiguration)
-//
-//        let mockNetworkManager = NetworkManager(session: mockSession)
-//
-//        MockURLProtocol.requestHandler =  { request in
-//            return (nil, upcomingMovieDecodingFailedStub ,nil)
-//        }
-//
-//        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 1) { (upcomingMovie, error) in
-//            XCTAssertTrue(error?.localizedDescription == "The given data was not valid JSON.")
-//        }
-//    }
-//    
-//    func testUpcomingMovieMethodWithNoInternetConnection() {
-//        
-//         let error = NSError(domain: NSURLErrorDomain, code: -1009, userInfo: [NSLocalizedDescriptionKey: "The Internet connection appears to be offline."])
-//        
-//        let sessionConfiguration = URLSessionConfiguration.ephemeral
-//        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
-//        let mockSession = URLSession(configuration: sessionConfiguration)
-//        
-//        let mockNetworkManager = NetworkManager(session: mockSession)
-//        
-//        MockURLProtocol.requestHandler =  { request in
-//            return (nil, nil ,error)
-//        }
-//        
-//        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 1) { (upcomingMovie, error) in
-//            XCTAssertTrue(error?.localizedDescription == "The Internet connection appears to be offline.")
-//        }
-//    }
+    func testUpcomingMovieMethodWithNoInternetConnection() {
+        
+         let error = NSError(domain: NSURLErrorDomain, code: -1009, userInfo: [NSLocalizedDescriptionKey: "The Internet connection appears to be offline."])
+        
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
+        let mockSession = URLSession(configuration: sessionConfiguration)
+        
+        let mockNetworkManager = NetworkManager(session: mockSession)
+        
+        MockURLProtocol.requestHandler =  { request in
+            return (nil, nil ,error)
+        }
+        
+        MovieListServiceImpl(networkManager: mockNetworkManager).getUpcomingMovies(on: 1) { (result) in
+            if case let .failure(error) = result {
+                XCTAssertTrue(error.localizedDescription == "The Internet connection appears to be offline.")
+            }
+        }
+    }
 
 
 

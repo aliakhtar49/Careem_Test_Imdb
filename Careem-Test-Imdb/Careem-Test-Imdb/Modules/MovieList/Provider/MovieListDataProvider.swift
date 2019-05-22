@@ -13,6 +13,7 @@ protocol MovieListDataProviderDelegate: class {
     
     func onSuccess(_ upcomingMovies: UpcomingMovies)
     func onFailure(_ error: NetworkError)
+    func showLoader(show: Bool)
 }
 
 
@@ -42,12 +43,15 @@ class MovieListDataProviderImpl: MovieListDataProvider {
         
         if pageCount <= totalPages && isFetching == false {
             
+            
             isFetching = true
+            delegate?.showLoader(show: isFetching)
             movieService.getUpcomingMovies(on: pageCount) { [weak self] (result) in
                 
                 guard let self = self else { return }
         
                 self.isFetching = false
+                self.delegate?.showLoader(show: self.isFetching)
                 
                 switch result {
                     

@@ -55,7 +55,7 @@ class MovieListServiceImpl: MovieListService {
                     completion(.success(upcomingMovies))
                     
                 }catch {
-                    completion(.failure(NetworkError.decoding(data, error)))
+                    completion(.failure(NetworkError.decoding(error)))
                     
                 }
                 

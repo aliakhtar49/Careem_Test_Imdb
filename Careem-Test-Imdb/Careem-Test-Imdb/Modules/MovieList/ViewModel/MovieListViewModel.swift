@@ -100,7 +100,7 @@ final class MovieListViewModelImp: MovieListViewModel {
     }
     func getUpcomingMovies() {
         
-        output?(.showLoader(show: true))
+        
         movieListDataProvider.providePaginatedUpcomingMovies()
     }
     
@@ -127,16 +127,21 @@ final class MovieListViewModelImp: MovieListViewModel {
 //MARK: - MovieListDataProviderDelegate Delegate
 extension MovieListViewModelImp: MovieListDataProviderDelegate {
     
+    func showLoader(show: Bool) {
+        output?(.showLoader(show: show))
+    }
+    
+    
     func onSuccess(_ upcomingMovies: UpcomingMovies) {
 
         guard let results = upcomingMovies.results else { return }
         allMovieListViewModels.append(contentsOf: results.map { MovieListTableCellViewModel.init($0) })
-        output?(.showLoader(show: false))
+        
     }
     
     func onFailure(_ error: NetworkError) {
          output?(.showError(error: error))
-         output?(.showLoader(show: false))
+        
         
     }
     

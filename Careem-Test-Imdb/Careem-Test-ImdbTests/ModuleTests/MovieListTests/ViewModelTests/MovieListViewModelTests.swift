@@ -48,13 +48,12 @@ class MovieListViewModelTests: XCTestCase {
         //Then
          let cellViewModel = viewModel.getMovieListCellViewModel(index: 0)
          XCTAssert(cellViewModel.movieTitleText == "John Wick: Chapter 3 – Parabellum")
-         XCTAssert(view.isShowLoaderCalls == true)
     
     }
     //MARK: -  Failure Case
     
-    //// - testGetUpcomingMoviesOnFailureCraetingError
-    func testGetUpcomingMoviesMethodOnFailure() {
+    //// - testGetUpcomingMoviesMethodOnFailureWithUnknownError
+    func testGetUpcomingMoviesMethodOnFailureWithUnknownError() {
         
         
         //Given
@@ -66,10 +65,29 @@ class MovieListViewModelTests: XCTestCase {
         viewModel.getUpcomingMovies()
         
         //Then
-        XCTAssert(view.isShowLoaderCalls == true)
         XCTAssert(view.isShowErrorCalls == true)
         
     }
+    //// - testGetUpcomingMoviesMethodOnFailure
+    func testGetUpcomingMoviesMethodOnFailureWithServerError() {
+        
+        
+        //Given
+        let error = NSError(domain: NSURLErrorDomain, code: -1009, userInfo: [NSLocalizedDescriptionKey: "The Internet connection appears to be offline."])
+        mockListDataProvider.closure = { [unowned self] in
+            self.mockListDataProvider.delegate?.onFailure(NetworkError.server(error))
+        }
+        
+        //When getUpcomingMovies method on View model Failed to fetch Upcoming Movies
+        viewModel.getUpcomingMovies()
+        
+        //Then
+        XCTAssert(view.isShowErrorCalls == true)
+        
+    }
+    
+    
+    
     
     //MARK: -  Success Case
 
@@ -88,7 +106,6 @@ class MovieListViewModelTests: XCTestCase {
         //Then
         let cellViewModel = viewModel.getMovieListCellViewModel(index: 0)
         XCTAssert(cellViewModel.movieTitleText == "John Wick: Chapter 3 – Parabellum")
-        XCTAssert(view.isShowLoaderCalls == true)
 
     }
 
@@ -107,7 +124,6 @@ class MovieListViewModelTests: XCTestCase {
         //Then
         let cellViewModel = viewModel.getMovieListCellViewModel(index: 0)
         XCTAssert(cellViewModel.movieTitleText == "John Wick: Chapter 3 – Parabellum")
-        XCTAssert(view.isShowLoaderCalls == true)
 
     }
 

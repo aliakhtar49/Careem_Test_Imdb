@@ -4,19 +4,13 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Careem-Test-Imdb/Modules/MovieList/ViewModel/MovieListViewModel.swift"
-            timestampString = "580175663.512266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "onSuccess(_:)"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,29 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Careem-Test-ImdbTests/ModuleTests/MovieListTests/MovieListViewModelTests.swift"
-            timestampString = "580175663.512372"
+            filePath = "Careem-Test-ImdbTests/ServiceTests/MovieListServiceTests.swift"
+            timestampString = "580191618.095401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "bindViewModelOutput()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Careem-Test-ImdbTests/ModuleTests/MovieListTests/MovieListViewModelTests.swift"
-            timestampString = "580175663.512928"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "bindViewModelOutput()"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "testUpcomingMovieMethodWithNoInternetConnection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
